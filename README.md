@@ -1,2 +1,2 @@
 # datafest-airflow-workshop
-Code used to train participants during Datafest Africa workshop on Airflow
+Code used during Datafest Africa workshop on Airflow
