@@ -1,0 +1,25 @@
+steps:
+  - name: python
+    id: Upgrade pip
+    entrypoint: pip
+    args: ["install", "--upgrade", "pip", "--user"]
+  - name: python
+    id: Install dependencies
+    entrypoint: pip
+    args: ["install", "-r", "requirements.txt", "--user", "--no-warn-script-location"]
+  - name: python
+    id: Generate DAGs dynamically
+    entrypoint: '/bin/sh'
+    dir: "dags_generation"
+    args: ["-c", "python generate_dags.py"]
+  - name: python
+    id: Move DAGs to dag folder
+    entrypoint: '/bin/sh'
+    dir: "/dag_generation"
+    args: ["-c", "mv outputs/* ../dags/"]
+  - name: "gcr.io/cloud-builders/gsutil"
+    id: Deploy plugins
+    args: ['-m', 'rsync', '-d', '-r', 'plugins/', '$_COMPOSER_BUCKET/plugins']
+  - name: "gcr.io/cloud-builders/gsutil"
+    id: deploy DAGs
+    args: ['-m', 'rsync', '-d', '-r', 'dags/', '$_COMPOSER_BUCKET/dags']
