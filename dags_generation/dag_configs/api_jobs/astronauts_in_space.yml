@@ -1,0 +1,7 @@
+version: 1.0
+description: This job fetches information of astronauts in space
+schedule: 0 * * * *
+max_runs: 1
+catchup: False
+tags: apis
+endpoint: astros.json

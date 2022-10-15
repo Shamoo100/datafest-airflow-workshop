@@ -1,0 +1,9 @@
+# ~~ Ignore Everything ~~
+**
+
+# ~~ White list files used to build image ~~
+!requirements.txt
+
+# ~~ White list files used by the code ~~
+!plugins/**
+!dags/**

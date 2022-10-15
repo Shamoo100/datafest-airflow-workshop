@@ -1,0 +1,10 @@
+# Environments
+.env
+venv/
+
+# Airflow stuff
+logs/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+.DS_Store
