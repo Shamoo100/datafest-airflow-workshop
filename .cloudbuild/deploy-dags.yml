@@ -15,7 +15,7 @@ steps:
   - name: python
     id: Move DAGs to dag folder
     entrypoint: '/bin/sh'
-    dir: "/dag_generation"
+    dir: "/dags_generation"
     args: ["-c", "mv outputs/* ../dags/"]
   - name: "gcr.io/cloud-builders/gsutil"
     id: Deploy plugins
