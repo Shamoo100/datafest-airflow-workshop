@@ -11,7 +11,7 @@ steps:
     id: Generate DAGs dynamically
     entrypoint: '/bin/sh'
     dir: "dags_generation"
-    args: ["-c", "python generate_dags.py"]
+    args: ["-c", "python generate_dag_files.py"]
   - name: python
     id: Move DAGs to dag folder
     entrypoint: '/bin/sh'

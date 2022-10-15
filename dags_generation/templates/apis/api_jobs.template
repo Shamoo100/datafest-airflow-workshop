@@ -13,20 +13,19 @@ DEFAULT_ARGS = {
     "retry_delay": timedelta(minutes=3),
 }
 with DAG(
-    dag_id=f"{ENV}-astronauts_in_space-v1.0",
-    description="This job fetches information of astronauts in space",
+    dag_id=f"{ENV}-astronauts_in_space-v{{ version }}",
+    description="{{ description }}",
     default_args=DEFAULT_ARGS,
-    schedule_interval="*/30 * * * *",
-    max_active_runs=1,
-    catchup=False,
-    tags=["apis"],
+    schedule_interval="{{ schedule }}",
+    max_active_runs={{ max_runs }},
+    catchup={{ catchup }},
+    tags={{ tags }},
 ) as dag:
     start = DummyOperator(task_id="start")
     end = DummyOperator(task_id="end")
     run_endpoint = SimpleHttpOperator(
         task_id="run_endpoint",
-        endpoint="astros.json",
-        # base url is http://api.open-notify.org/
+        endpoint="{{ endpoint }}",
         method="GET",
         http_conn_id=f'http_{ENV}',
         log_response=True,
